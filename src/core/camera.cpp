@@ -63,6 +63,9 @@ float Camera::GenerateRayDifferential(const CameraSample &sample,
     CameraSample sshift = sample;
     ++(sshift.imageX);
     Ray rx;
+	rx.samp = rd->samp;
+	rx.lamb = rd->lamb;
+
     float wtx = GenerateRay(sshift, &rx);
     rd->rxOrigin = rx.o;
     rd->rxDirection = rx.d;
@@ -71,6 +74,8 @@ float Camera::GenerateRayDifferential(const CameraSample &sample,
     --(sshift.imageX);
     ++(sshift.imageY);
     Ray ry;
+	ry.samp = rd->samp;
+	ry.lamb = rd->lamb;
     float wty = GenerateRay(sshift, &ry);
     rd->ryOrigin = ry.o;
     rd->ryDirection = ry.d;

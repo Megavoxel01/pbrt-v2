@@ -788,9 +788,13 @@ Spectrum MetropolisRenderer::Li(const Scene *scene, const RayDifferential &ray,
     Intersection localIsect;
     if (!isect) isect = &localIsect;
     Spectrum Lo = 0.f;
-    if (scene->Intersect(ray, isect))
-        Lo = directLighting->Li(scene, this, ray, *isect, sample,
-                                rng, arena);
+	if (scene->Intersect(ray, isect)){
+		Lo = directLighting->Li(scene, this, ray, *isect, sample,
+			rng, arena);
+#ifndef NORM
+		Lo.setSpectrum(nSpectralSamples, ray.samp);
+#endif
+	}
     else {
         // Handle ray that doesn't intersect any geometry
         for (uint32_t i = 0; i < scene->lights.size(); ++i)

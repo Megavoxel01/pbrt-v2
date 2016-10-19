@@ -220,6 +220,8 @@ float InterpolateSpectrumSamples(const float *lambda, const float *vals,
 }
 
 
+
+
 const float CIE_X[nCIESamples] = {
     // CIE X function values
       0.0001299000f, 0.0001458470f, 0.0001638021f, 0.0001840037f,

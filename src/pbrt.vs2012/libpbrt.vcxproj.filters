@@ -912,6 +912,9 @@
     <ClInclude Include="..\core\targa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\cameras\Realistic.h">
+      <Filter>Header Files\cameras</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdparty\ilmbase-1.0.2\half.cpp">
@@ -1355,9 +1358,6 @@
     <ClCompile Include="..\integrators\dipolesubsurface.cpp">
       <Filter>Source Files\integrators</Filter>
     </ClCompile>
-    <ClCompile Include="..\integrators\directlighting.cpp">
-      <Filter>Source Files\integrators</Filter>
-    </ClCompile>
     <ClCompile Include="..\integrators\emission.cpp">
       <Filter>Source Files\integrators</Filter>
     </ClCompile>
@@ -1681,6 +1681,12 @@
     </ClCompile>
     <ClCompile Include="..\core\targa.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\integrators\directlighting.cpp">
+      <Filter>Source Files\integrators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cameras\Realistic.cpp">
+      <Filter>Source Files\cameras</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

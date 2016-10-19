@@ -52,6 +52,7 @@ public:
                               Ray *ray) const = 0;
     virtual float GenerateRayDifferential(const CameraSample &sample, RayDifferential *rd) const;
 
+
     // Camera Public Data
     AnimatedTransform CameraToWorld;
     const float shutterOpen, shutterClose;

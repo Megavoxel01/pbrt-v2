@@ -52,6 +52,8 @@ public:
         const RayDifferential &ray, const Intersection &isect,
         const Sample *sample, RNG &rng, MemoryArena &arena) const;
     void RequestSamples(Sampler *sampler, Sample *sample, const Scene *scene);
+	void DirectLightingIntegrator::Preprocess(const Scene *scene, const Camera *camera,
+		const Renderer *renderer);
 private:
     // DirectLightingIntegrator Private Data
     LightStrategy strategy;

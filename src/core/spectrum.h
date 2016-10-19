@@ -67,6 +67,8 @@ extern void Blackbody(const float *wl, int n, float temp, float *vals);
 extern float InterpolateSpectrumSamples(const float *lambda, const float *vals,
                                         int n, float l);
 
+
+
 // Spectral Data Declarations
 static const int nCIESamples = 471;
 extern const float CIE_X[nCIESamples];
@@ -95,6 +97,7 @@ extern const float RGBIllum2SpectBlue[nRGB2SpectSamples];
 template <int nSamples> class CoefficientSpectrum {
 public:
     // CoefficientSpectrum Public Methods
+	float c[nSamples];
     CoefficientSpectrum(float v = 0.f) {
         for (int i = 0; i < nSamples; ++i)
             c[i] = v;
@@ -250,9 +253,32 @@ public:
             if (fscanf(f, "%f ", &c[i]) != 1) return false;
         return true;
     }
+	//custom
+	inline void setSpectrum(int n, int t)
+	{
+		//for (int i = 0; i < n - 1; ++i) Assert(lambda[i + 1] > lambda[i]);
+		if (t < 0) t = nSpectralSamples - 1;
+		if (t > nSpectralSamples - 1) t = 0;
+		float temp1 = c[t];
+		//float temp2 = vals[t + 1];
+		memset(c, 0.f, sizeof(c));
+		/*
+		for (int i = 0; i < n - 1; ++i) {
+		if (l >= lambda[i] && l <= lambda[i + 1]) {
+		float t = (l - lambda[i]) / (lambda[i + 1] - lambda[i]);
+		return Lerp(t, vals[i], vals[i + 1]);
+		}
+		}
+		*/
+		c[t] = temp1;
+		//vals[t + 1] = temp2;
+		//Severe("Fatal logic error in InterpolateSpectrumSamples()");
+		//return 0.f;
+	}
 protected:
     // CoefficientSpectrum Protected Data
-    float c[nSamples];
+	//float c[nSamples];
+    
 };
 
 
@@ -449,6 +475,8 @@ public:
         xyz[2] /= yint;
         return FromXYZ(xyz);
     }
+
+	
 };
 
 

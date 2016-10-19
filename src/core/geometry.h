@@ -38,7 +38,10 @@
 
 // core/geometry.h*
 #include "pbrt.h"
-
+#include "spectrum.h"
+extern const int sampledLambdaStart;
+extern const int sampledLambdaEnd;
+extern const int nSpectralSamples;
 // Geometry Declarations
 class Vector {
 public:
@@ -322,7 +325,10 @@ public:
 class Ray {
 public:
     // Ray Public Methods
-    Ray() : mint(0.f), maxt(INFINITY), time(0.f), depth(0) { }
+	//custom
+    Ray() : mint(0.f), maxt(INFINITY), time(0.f), depth(0),bounce(0),lamb(555.f){ 
+
+	}
     Ray(const Point &origin, const Vector &direction,
         float start, float end = INFINITY, float t = 0.f, int d = 0)
         : o(origin), d(direction), mint(start), maxt(end), time(t), depth(d) { }
@@ -342,6 +348,9 @@ public:
     mutable float mint, maxt;
     float time;
     int depth;
+	int bounce;
+	float lamb;
+	int samp;
 };
 
 
